@@ -265,7 +265,7 @@ export default function AccountPage() {
               <ul className="space-y-1.5">
                 {[
                   "Track your orders in real time",
-                  "Save your wishlist across devices",
+                  "Get early access to new arrivals",
                   "Exclusive member discounts",
                   "Faster checkout every time",
                 ].map((benefit) => (

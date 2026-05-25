@@ -11,16 +11,15 @@ const FOOTER_LINKS = {
   ],
   account: [
     { label: "My Account", href: "/account" },
-    { label: "Orders", href: "/account/orders" },
-    { label: "Wishlist", href: "/wishlist" },
-    { label: "Track Order", href: "/track" },
+    { label: "Orders", href: "/account" },
+    { label: "Track Order", href: "/account" },
   ],
   help: [
-    { label: "FAQ", href: "/faq" },
-    { label: "Shipping Policy", href: "/shipping" },
-    { label: "Return Policy", href: "/returns" },
-    { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms of Service", href: "/terms" },
+    { label: "FAQ", href: "/account" },
+    { label: "Shipping Policy", href: "/account" },
+    { label: "Return Policy", href: "/account" },
+    { label: "Privacy Policy", href: "/account" },
+    { label: "Terms of Service", href: "/account" },
   ],
 };
 

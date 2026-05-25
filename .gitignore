@@ -41,3 +41,5 @@ prisma/migrations/*.lock
 
 # Docker
 docker-compose.override.yml
+
+.vercel
