@@ -1,7 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { ProductCard } from "@/components/product/product-card";
-import { api } from "@/lib/api";
 
 const DEMO_PRODUCTS = [
   { id: "1", name: "Premium Running Shoes", slug: "premium-running-shoes", price: 4200, compareAtPrice: 5500, image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80", rating: 4.8, reviewCount: 124 },
