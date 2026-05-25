@@ -63,10 +63,10 @@ export function HeroSection() {
   const smoothRotateX = useSpring(rotateX, { stiffness: 100, damping: 30 });
   const smoothRotateY = useSpring(rotateY, { stiffness: 100, damping: 30 });
 
-  const prefersReducedMotion =
-    typeof window !== "undefined"
-      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      : false;
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  useEffect(() => {
+    setPrefersReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
 
   const resetInterval = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);

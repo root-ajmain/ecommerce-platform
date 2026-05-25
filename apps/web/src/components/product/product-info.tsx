@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Star, ShoppingCart, Heart, Truck, Shield, RefreshCw, Minus, Plus } from "lucide-react";
+import { Star, ShoppingCart, Truck, Shield, RefreshCw, Minus, Plus } from "lucide-react";
 import { useCartStore } from "@/store/cart.store";
-import { useWishlistStore } from "@/store/wishlist.store";
 import { formatPrice, formatDiscount, cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { v4 as uuidv4 } from "uuid";
@@ -29,12 +28,8 @@ interface ProductInfoProps {
 export function ProductInfo({ product }: ProductInfoProps) {
   const [quantity, setQuantity] = useState(1);
   const [selectedVariantId, setSelectedVariantId] = useState<string | null>(null);
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
 
   const addItem = useCartStore((s) => s.addItem);
-  const { toggleWishlist, isInWishlist } = useWishlistStore();
-  const inWishlist = mounted && isInWishlist(product.id);
 
   const price = Number(product.price);
   const compareAtPrice = product.compareAtPrice ? Number(product.compareAtPrice) : undefined;
@@ -133,16 +128,6 @@ export function ProductInfo({ product }: ProductInfoProps) {
           Add to Cart
         </motion.button>
 
-        <button
-          onClick={() => { toggleWishlist(product.id); toast.success(inWishlist ? "Removed from wishlist" : "Added to wishlist"); }}
-          className={cn(
-            "flex h-12 w-12 items-center justify-center rounded-full border transition",
-            inWishlist ? "border-rose-500 bg-rose-500/10 text-rose-500" : "border-border hover:border-rose-500 hover:text-rose-500"
-          )}
-          aria-label="Toggle wishlist"
-        >
-          <Heart className={cn("h-5 w-5", inWishlist && "fill-current")} />
-        </button>
       </div>
 
       <div className="grid grid-cols-1 gap-3 rounded-xl border border-border p-4 sm:grid-cols-3">

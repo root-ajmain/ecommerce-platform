@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Grid, Heart, ShoppingCart, User } from "lucide-react";
+import { Home, Grid, ShoppingCart, User } from "lucide-react";
 import { useCartStore } from "@/store/cart.store";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
@@ -10,7 +10,6 @@ import { useState, useEffect } from "react";
 const NAV_ITEMS = [
   { label: "Home", href: "/", icon: Home },
   { label: "Shop", href: "/category/all", icon: Grid },
-  { label: "Wishlist", href: "/wishlist", icon: Heart },
   { label: "Cart", href: "#cart", icon: ShoppingCart, isCart: true },
   { label: "Account", href: "/account", icon: User },
 ];

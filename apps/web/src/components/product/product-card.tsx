@@ -3,11 +3,10 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, ShoppingCart, Star, Eye } from "lucide-react";
+import { ShoppingCart, Star, Eye } from "lucide-react";
 import { cn, formatPrice, formatDiscount } from "@/lib/utils";
 import { useCartStore } from "@/store/cart.store";
-import { useWishlistStore } from "@/store/wishlist.store";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { v4 as uuidv4 } from "uuid";
 // uuid is used for cart item IDs
@@ -38,24 +37,13 @@ export function ProductCard({
   className,
 }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
   const addItem = useCartStore((s) => s.addItem);
-  const { toggleWishlist, isInWishlist } = useWishlistStore();
-  const inWishlist = mounted && isInWishlist(id);
-
   const discount = compareAtPrice ? formatDiscount(compareAtPrice, price) : 0;
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     addItem({ id: uuidv4(), productId: id, name, slug, image, price, quantity: 1 });
     toast.success(`${name} added to cart`);
-  };
-
-  const handleWishlist = (e: React.MouseEvent) => {
-    e.preventDefault();
-    toggleWishlist(id);
-    toast.success(inWishlist ? "Removed from wishlist" : "Added to wishlist");
   };
 
   return (
@@ -111,16 +99,6 @@ export function ProductCard({
           >
             <Eye className="h-4 w-4" />
           </Link>
-          <button
-            onClick={handleWishlist}
-            className={cn(
-              "flex h-10 w-10 items-center justify-center rounded-full shadow-lg transition hover:scale-110",
-              inWishlist ? "bg-rose-500 text-white" : "bg-white text-black"
-            )}
-            aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
-          >
-            <Heart className={cn("h-4 w-4", inWishlist && "fill-current")} />
-          </button>
         </motion.div>
       </Link>
 

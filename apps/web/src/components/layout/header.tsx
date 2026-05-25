@@ -4,10 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ShoppingCart, Heart, Search, Menu, X, Sun, Moon, User } from "lucide-react";
+import { ShoppingCart, Search, Menu, X, Sun, Moon, User } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useCartStore } from "@/store/cart.store";
-import { useWishlistStore } from "@/store/wishlist.store";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -26,7 +25,6 @@ export function Header() {
   const headerBg = useTransform(scrollY, [0, 80], ["rgba(0,0,0,0)", "rgba(0,0,0,0.95)"]);
 
   const itemCount = useCartStore((s) => s.itemCount());
-  const wishlistCount = useWishlistStore((s) => s.productIds.length);
   const openCart = useCartStore((s) => s.openCart);
 
   useEffect(() => { setMounted(true); }, []);
@@ -70,15 +68,6 @@ export function Header() {
               {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </button>
           )}
-
-          <Link href="/wishlist" className="relative flex h-9 w-9 items-center justify-center rounded-full hover:bg-accent transition-colors">
-            <Heart className="h-4 w-4" />
-            {mounted && wishlistCount > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
-                {wishlistCount}
-              </span>
-            )}
-          </Link>
 
           <button
             onClick={openCart}
