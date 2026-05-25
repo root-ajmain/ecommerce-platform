@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star, ShoppingCart, Heart, Truck, Shield, RefreshCw, Minus, Plus } from "lucide-react";
 import { useCartStore } from "@/store/cart.store";
@@ -29,10 +29,12 @@ interface ProductInfoProps {
 export function ProductInfo({ product }: ProductInfoProps) {
   const [quantity, setQuantity] = useState(1);
   const [selectedVariantId, setSelectedVariantId] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
 
   const addItem = useCartStore((s) => s.addItem);
   const { toggleWishlist, isInWishlist } = useWishlistStore();
-  const inWishlist = isInWishlist(product.id);
+  const inWishlist = mounted && isInWishlist(product.id);
 
   const price = Number(product.price);
   const compareAtPrice = product.compareAtPrice ? Number(product.compareAtPrice) : undefined;

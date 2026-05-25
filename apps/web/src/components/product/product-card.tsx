@@ -7,7 +7,7 @@ import { Heart, ShoppingCart, Star, Eye } from "lucide-react";
 import { cn, formatPrice, formatDiscount } from "@/lib/utils";
 import { useCartStore } from "@/store/cart.store";
 import { useWishlistStore } from "@/store/wishlist.store";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { v4 as uuidv4 } from "uuid";
 // uuid is used for cart item IDs
@@ -38,9 +38,11 @@ export function ProductCard({
   className,
 }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
   const addItem = useCartStore((s) => s.addItem);
   const { toggleWishlist, isInWishlist } = useWishlistStore();
-  const inWishlist = isInWishlist(id);
+  const inWishlist = mounted && isInWishlist(id);
 
   const discount = compareAtPrice ? formatDiscount(compareAtPrice, price) : 0;
 

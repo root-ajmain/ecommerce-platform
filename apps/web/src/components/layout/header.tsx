@@ -73,7 +73,7 @@ export function Header() {
 
           <Link href="/wishlist" className="relative flex h-9 w-9 items-center justify-center rounded-full hover:bg-accent transition-colors">
             <Heart className="h-4 w-4" />
-            {wishlistCount > 0 && (
+            {mounted && wishlistCount > 0 && (
               <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
                 {wishlistCount}
               </span>
@@ -86,7 +86,7 @@ export function Header() {
             aria-label="Open cart"
           >
             <ShoppingCart className="h-4 w-4" />
-            {itemCount > 0 && (
+            {mounted && itemCount > 0 && (
               <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
                 {itemCount > 99 ? "99+" : itemCount}
               </span>

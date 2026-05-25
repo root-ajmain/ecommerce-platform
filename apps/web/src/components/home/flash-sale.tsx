@@ -34,8 +34,9 @@ function useCountdown(targetDate: Date) {
 }
 
 export function FlashSale() {
-  const endTime = new Date(Date.now() + 6 * 3600000);
-  const { h, m, s } = useCountdown(endTime);
+  const [endTime, setEndTime] = useState<Date | null>(null);
+  useEffect(() => { setEndTime(new Date(Date.now() + 6 * 3600000)); }, []);
+  const { h, m, s } = useCountdown(endTime ?? new Date(0));
 
   return (
     <section className="bg-gradient-to-r from-rose-500/10 via-orange-500/5 to-amber-500/10 py-16">
