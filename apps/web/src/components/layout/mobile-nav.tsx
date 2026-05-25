@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Home, Grid, Heart, ShoppingCart, User } from "lucide-react";
 import { useCartStore } from "@/store/cart.store";
 import { cn } from "@/lib/utils";
+import { useState, useEffect } from "react";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/", icon: Home },
@@ -16,6 +17,8 @@ const NAV_ITEMS = [
 
 export function MobileNav() {
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
   const itemCount = useCartStore((s) => s.itemCount());
   const openCart = useCartStore((s) => s.openCart);
 
@@ -33,7 +36,7 @@ export function MobileNav() {
               {isCart ? (
                 <span className="relative">
                   <Icon className={cn("h-5 w-5", isActive ? "text-primary" : "text-muted-foreground")} />
-                  {itemCount > 0 && (
+                  {mounted && itemCount > 0 && (
                     <span className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[9px] font-bold text-primary-foreground">
                       {itemCount}
                     </span>

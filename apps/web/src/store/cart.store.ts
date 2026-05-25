@@ -82,6 +82,7 @@ export const useCartStore = create<CartState>()(
     {
       name: "cart-storage",
       storage: createJSONStorage(() => localStorage),
+      skipHydration: true,
     }
   )
 );
