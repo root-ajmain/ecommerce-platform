@@ -33,7 +33,7 @@ export const api = {
       return fetchApi<unknown>(`/products${qs}`, { next: { revalidate: 60, tags: ["products"] } });
     },
     getBySlug: (slug: string) =>
-      fetchApi<{ id: string; name: string; slug: string; price: number; compareAtPrice?: number | null; shortDescription?: string | null; description?: string | null; metaTitle?: string | null; metaDesc?: string | null; images?: Array<{ url: string; altText?: string }>; categories?: Array<{ category: { name: string; slug: string } }>; variants?: Array<{ id: string; sku: string; price: number }>; inventory?: { quantity: number } | null; reviews?: unknown[]; rating: number; reviewCount: number }>(
+      fetchApi<{ id: string; name: string; slug: string; price: number; compareAtPrice?: number | null; shortDescription?: string | null; description?: string | null; metaTitle?: string | null; metaDesc?: string | null; images?: Array<{ url: string; altText?: string }>; categories?: Array<{ category: { name: string; slug: string } }>; variants?: Array<{ id: string; sku: string; price: number }>; inventory?: { quantity: number } | null; reviews?: Array<{ id?: string; rating: number; title?: string | null; body?: string | null; user?: { firstName: string; lastName: string; avatar?: string | null }; createdAt?: Date | string }>; rating: number; reviewCount: number }>(
         `/products/${slug}`,
         { next: { revalidate: 60, tags: [`product-${slug}`] } }
       ),
