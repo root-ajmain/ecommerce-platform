@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-turbo@latest . --package-manager pnpm)",
+      "Bash(pnpm --version)",
+      "Bash(npx create-turbo@latest . --package-manager pnpm --skip-install)",
+      "Bash(git --version)",
+      "Bash(gh --version)",
+      "Bash(vercel whoami *)",
+      "Bash(git init *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

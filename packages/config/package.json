@@ -1,0 +1,14 @@
+{
+  "name": "@repo/config",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./eslint": "./eslint.config.js",
+    "./typescript": "./tsconfig.base.json"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
